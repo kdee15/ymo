@@ -1,0 +1,260 @@
+// 0.2 MOLECULES [ 2.2.2. BOOTSTRAP BURGER MENU ] #####################################################################
+
+// A. GLOBAL STYLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// A.0. VARIABLES -----------------------------------------
+
+$ButtonWidth:           28px;
+$ButtonHeight:          28px;
+$BarHeight:             3px;
+$BarSpace:              3px;
+$BarColor:              $grey-cc;
+$BarColorHover:         $black;
+$BarColorActive:        $white;
+$BarColorActiveHover:   $black;
+$BarRounded:            0px;
+
+// A.0. END -----------------------------------------------
+
+// A.1. BURGER MENU ---------------------------------------
+
+.a-burger,
+.navbar-toggler {
+
+  border: 0;
+  outline: none!important;
+  margin: 0;
+  padding: 0;
+  z-index: 1000;
+  position: fixed;
+  top: 20px;
+  right: 30px;
+
+  .a-burger-icon,
+  .navbar-toggler-icon {
+
+    background-image: none;
+    position: relative;
+    width: $ButtonWidth;
+    height: $ButtonHeight;
+    transition: .5s ease-in-out;
+    cursor: pointer;
+    display: block;
+
+    span {
+      display: block;
+      position: absolute;
+      height: $BarHeight;
+      background: $BarColor;
+      border-radius: $BarRounded;
+      opacity: 1;
+      left: 0;
+      transition: .25s ease-in-out;
+
+      &:nth-child(1) { top: $BarSpace; width: 100%; left: 0%; }
+      &:nth-child(2) { top: 50%; width: 100%; transform: translateY(-50%) rotate(0deg); }
+      &:nth-child(3) { top: 50%; width: 100%; transform: translateY(-50%) rotate(0deg); }
+      &:nth-child(4) { bottom: $BarSpace; width: 100%; left: 0%; }
+
+    }
+  }
+
+  // ACTIVE STATE -----------------------------------------
+
+  &.on {
+    .a-burger-icon,
+    .navbar-toggler-icon {
+
+      span { background: $BarColorActive;
+
+        &:nth-child(1) { top: 50%; width: 0%; left: 50%; }
+        &:nth-child(2) { top: 50%; width: 100%; transform: translateY(-50%) rotate(45deg); }
+        &:nth-child(3) { top: 50%; width: 100%; transform: translateY(-50%) rotate(-45deg); }
+        &:nth-child(4) { bottom: 50%; width: 0%; left: 50%; }
+
+      }
+    }
+
+    &:hover {
+      .a-burger-icon,
+      .navbar-toggler-icon {
+        span { background: $BarColorActive; }
+      }
+    }
+  }
+
+  // HOVER STATE ------------------------------------------
+
+  &:hover {
+    .a-burger-icon,
+    .navbar-toggler-icon {
+      span { background: $BarColor; }
+    }
+  }
+}
+
+// A.1. END -----------------------------------------------
+
+// A.2. NAVBAR --------------------------------------------
+
+.navbar-collapse { position: absolute; }
+
+// A.2. END -----------------------------------------------
+
+// A.3. BURGER MENU CONTENT -------------------------------
+
+.navbar-collapse,
+.a-burger-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 300px;
+  background: $blue-lt;
+  display: block;
+  transform: translateX(150%);
+  transition: 0.3s;
+  z-index: 10000;
+
+  &.on { transition: 0.3s; transform: translateX(0%); }
+  &.collapse { transition: 0s; }
+  &.show { transform: translateX(0%); transition: 0s; }
+
+  .navbar-nav { padding: 0;
+    div,.menu-main-container {
+      ul,.primary-menu { list-style-type: none; margin: 0; padding: 0; margin-top: $base-xl;
+        li,.menu-item { display: inline-block; width: 100%;
+          a { display: block; padding: $base-sm $base; color: $black; font-weight: 400;
+            &:hover { background-color: $grey-blue; color: white; text-decoration: none; }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+// A.3. END -----------------------------------------------
+
+// A.4. TRANSITIONS ---------------------------------------
+
+body { transition: 0.3s;
+  .p-main { transform: translateX(0); transition: 0.3s; }
+  &.p-fixed {
+
+    // A.4.1. HEADER BACKGROUND TRANSITION ----------------
+    .o-header {
+      &:after { transform: translateX(-300px); transition: 0.3s; }
+      &:before { transform: translateX(-300px); transition: 0.3s; background-color: rgba(0,0,0,0.3); }
+    }
+
+    .a-burger-menu {
+      .navbar-nav { @include vertical-align(absolute); display: block; left: 0; right: 0;
+        .navbar-nav-inner { list-style-type: none; margin: 0 auto; padding: 0;
+
+          // A.4.1.1 USER STATUS SETTINGS ---------------------
+          .a-user-logged-in { color: $white; transition: 0.3s; }
+
+        }
+      }
+    }
+
+    // A.4.1. BODY TRANSITION -----------------------------
+    .p-main { @include position(absolute, 0); transform: translateX(-300px); transition: 0.3s; }
+  }
+}
+
+// A.4. END -----------------------------------------------
+
+// A. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// B. MOBILE VIEW +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// B.1. MAX-WIDTH: 575px ----------------------------------
+
+@media ($xs-dn) {
+
+  body.p-fixed {
+    .o-header {
+      &:after { transform: translateX(-100%); }
+      &:before { transform: translateX(-100%); }
+    }
+  }
+
+  .a-burger-menu { max-width: none; }
+
+  .a-burger { top: 10px; right: 15px; }
+
+}
+
+// B.2. MIN-WIDTH: 576px ----------------------------------
+
+@media ($xs-up) {}
+
+// B. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// C. MIN-WIDTH: 768px ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// B.1. MAX-WIDTH: 767px ----------------------------------
+
+@media ($sm-dn) {}
+
+// B.2. MIN-WIDTH: 768px ----------------------------------
+
+@media ($sm-up) {
+
+  .a-burger-menu,
+  .navbar-collapse  { max-width: 300px; }
+
+  .a-burger,
+  .navbar-toggler {
+
+    &.on {
+      &:hover {
+        .a-burger-icon,
+        .navbar-toggler-icon {
+          span { background: $BarColorActiveHover; }
+        }
+      }
+    }
+
+    &:hover {
+      .a-burger-icon,
+      .navbar-toggler-icon {
+        span { background: $BarColorHover; }
+      }
+    }
+  }
+}
+
+// C. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// D. MIN-WIDTH: 992px ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+@media ($md-dn) {
+
+  body.p-fixed {
+    .toggle-content {
+      &.a-burger-menu {
+        .navbar-nav { top: 0; transform: translateY(0); height: 100%; overflow-y: auto; }
+      }
+    }
+  }
+
+}
+
+
+@media ($md-up) {}
+
+// D. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// E. MIN-WIDTH: 1200px +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+@media ($lg-up) {}
+
+// E. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// END OF FILE ########################################################################################################

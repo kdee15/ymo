@@ -1,0 +1,126 @@
+// 3. ORGANISM [ 3.1. CARDS ] #########################################################################################
+
+// A. GLOBAL STYLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// A.1. GENERAL CARDS -------------------------------------------------------------------------------------------------
+
+.o-header {
+
+  background-color: rgba($white,0.3);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+
+  &.o-home-header { z-index: 1; background-size: cover; background-position: center center; }
+  &.o-page-header {
+    .m-figure { max-width: 120px; }
+    .m-breadcrumbs { opacity: 0; }
+  }
+
+  .m-figure { width: 250px; padding: 0; margin: $base 0 $base $base; transition: 0.3s;  }
+
+  #mvbc-logo {
+    #m-mvbc { display: block; transform: translate( -400px, 0 ); transition: 0.3s; opacity: 0; }
+    #m-mvbc-a { display: block; transform: translate( 0 ); transition: 0.3s; }
+  }
+  .o-hamburger { transition: 0.3s; @include vertical-align(absolute); }
+
+  &.sticky {
+    .m-figure { width: 150px; transition: 0.3s; margin: 5px; }
+    #mvbc-logo {
+      #m-mvbc { display: block; transform: translate( -120px, 0 ); transition: 0.3s; opacity: 1; }
+      #m-mvbc-a { display: block; transform: translate( 40px, 0 ); transition: 0.3s; opacity: 0; }
+      #m-viking-dude { display: block; transform: translate(-140px,0); transition: 0.3s; }
+    }
+    .o-hamburger { transition: 0.3s; }
+  }
+}
+
+// A.1. END -----------------------------------------------------------------------------------------------------------
+
+// A.2. PAGE HEADER ---------------------------------------------------------------------------------------------------
+
+.o-article-header { @include aspect-ratio (100%, 65%); position: relative; overflow: hidden;
+  img {
+    @include middle-align();
+    position: absolute;
+    width: auto;
+    height: auto;
+    z-index: 1;
+    opacity: 0.5;
+    min-height: 100%;
+    filter: blur(2px);
+  }
+  .a-post-title {
+    position: absolute; left: $base; bottom: $base; z-index: 10; color: $white; text-shadow: 0 0 10px $black;
+    .a-footnote { font-size: 12px; display: block; }
+  }
+}
+
+// A.2. END -----------------------------------------------------------------------------------------------------------
+
+// A. GLOBAL STYLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// B. MAX-WIDTH: 767px ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+@media ($sm-dn) {} 
+
+// B. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// C. MIN-WIDTH: 768px ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+@media ($sm-up) {
+
+  // A.2. PAGE HEADER -------------------------------------
+
+  .o-article-header { @include aspect-ratio (100%, 30%);
+    img { width: 100%; }
+    .a-post-title { font-size: 32px; }
+  }
+
+  // A.2. END ---------------------------------------------
+
+}
+
+// C. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// D. MIN-WIDTH: 992px ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+@media ($md-up) {} 
+
+// D. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// E. MIN-WIDTH: 1200px +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+@media ($lg-up) {
+
+  // A.2. PAGE HEADER -------------------------------------
+
+  .o-article-header { @include aspect-ratio (100%, 20%);
+    .a-post-title { max-width: 1200px; @include center-align(); width: 100%; }
+  }
+
+// A.2. END ---------------------------------------------
+
+}
+
+// E. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// F. MIN-WIDTH: 1900px +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+@media ($hd-up) {
+
+  // A.2. PAGE HEADER -------------------------------------
+
+  .o-article-header { @include aspect-ratio (100%, 15%); max-height: 250px; }
+
+// A.2. END ---------------------------------------------
+
+}
+
+// F. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// END OF FILE ########################################################################################################

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="galactica">
+    <serverData>
+      <paths name="galactica">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/kdee.co.za/staging/mvbc" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>

@@ -1,0 +1,17 @@
+*.esproj
+
+node_modules/*
+.sass-cache/*
+
+_site/
+_site/*
+
+.DS_Store
+._*
+
+#CONTENT
+www/photos/*
+www/_site/*
+www/_site/
+.idea/workspace.xml
+.idea/workspace.xml
